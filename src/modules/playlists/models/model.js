@@ -10,7 +10,8 @@ var ModelSchema = new Schema({
         type: String
     },
     player: {
-        type: String
+        type: String,
+        required: 'Player is required'
     },
     rating: {
         type: Number,
