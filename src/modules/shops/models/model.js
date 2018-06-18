@@ -2,7 +2,6 @@
 
 var Model = "Shop";
 exports.model = Model;
-
 // use model
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
