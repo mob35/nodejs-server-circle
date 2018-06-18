@@ -13,6 +13,9 @@ var ModelSchema = new Schema({
         type: String,
         required: 'Player is required'
     },
+    thumbnail: {
+        type: String,
+    },
     rating: {
         type: Number,
         default: 0
