@@ -8,6 +8,7 @@ var request = require('supertest'),
     User = mongoose.model('User');
 
 var item,
+    item2,
     credentials,
     token;
 
@@ -19,6 +20,9 @@ describe(_model + ' CRUD routes tests', function () {
             player: 'https://www.youtube.com/watch?v=A7XyqSc0VDE&index=18&list=RDMMrBXPvLzMqpU',
             rating: 4,
             artist: 'MACO'
+        };
+        item2 = {
+            player: 'https://www.youtube.com/watch?v=A7XyqSc0VDE&index=18&list=RDMMrBXPvLzMqpU',
         };
         credentials = {
             username: 'username',
@@ -338,6 +342,25 @@ describe(_model + ' CRUD routes tests', function () {
                     // .set('Authorization', 'Bearer ' + token)
                     .expect(200)
                     .end(done);
+            });
+
+    });
+
+
+    it('should be post Player', function (done) {
+        request(app)
+            .post('/api/player')
+            // .set('Authorization', 'Bearer ' + token)
+            .send(item2)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+                var resp = res.body;
+                assert.equal(resp.status, 200);
+                assert.equal(resp.data.player, item2.player);
+                done();
             });
 
     });

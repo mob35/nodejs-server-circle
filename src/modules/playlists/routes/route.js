@@ -19,12 +19,20 @@ module.exports = function (app) {
         .get(controller.getPlayList)
         .post(controller.postPlayList);
 
-    app.route('/api/playlists/:playlistsId')
+    app.route('/api/playlists/:playerId')
         .get(controller.getPlayListById)
         .put(controller.putPlayList)
         .delete(controller.delete);
 
+    app.route('/api/player')
+        .get(controller.getPlayList)
+        .post(controller.slicePlayer, controller.apiPlayer, controller.postPlayer);
+
+    app.route('/api/player/:playerId')
+        .get(controller.getPlayListById)
+        .put(controller.putPlayList)
+        .delete(controller.delete);
 
     app.param(_model + 'id', controller.getByID);
-    app.param('playlistsId', controller.getByID);
+    app.param('playerId', controller.getByID);
 }

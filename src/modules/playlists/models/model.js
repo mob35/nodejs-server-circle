@@ -9,9 +9,15 @@ var ModelSchema = new Schema({
     title: {
         type: String
     },
+    channeltitle: {
+        type: String
+    },
     player: {
         type: String,
         required: 'Player is required'
+    },
+    playerid: {
+        type: String,
     },
     thumbnail: {
         type: String,
@@ -19,12 +25,6 @@ var ModelSchema = new Schema({
     rating: {
         type: Number,
         default: 0
-    },
-    artist: {
-        type: String
-    },
-    album: {
-        type: String
     },
     created: {
         type: Date,
