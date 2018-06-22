@@ -25,6 +25,7 @@ describe(_model + ' CRUD routes tests', function () {
             player: 'https://www.youtube.com/watch?v=A7XyqSc0VDE&index=18&list=RDMMrBXPvLzMqpU',
         };
         credentials = {
+            username: '1111',
             serial: '1111',
             password: 'password',
             email: 'test@email.com'

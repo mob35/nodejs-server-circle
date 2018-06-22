@@ -16,13 +16,16 @@ describe(_model + ' Authentication routes tests', function () {
         credentials = {
             password: "password",
             email: "test@email.com",
+            username:"test"
         };
         credentials2 = {
             password: "password",
-            email: "test@email.com"
+            email: "test@email.com",
+            username:"test"
         };
         credentials3 = {
             serial:'5b2cd04ea4b5ce00142c76f0sssssssssssssssssss',
+            username:"5b2cd04ea4b5ce00142c76f0sssssssssssssssssss"
         };
         done();
     });
