@@ -10,11 +10,11 @@ describe(_model + ' Model save tests', function () {
 
     before(function (done) {
         user = {
-            firstName: 'Full',
-            lastName: 'Name',
-            displayName: 'Full Name',
+            // firstName: 'Full',
+            // lastName: 'Name',
+            // displayName: 'Full Name',
             email: '_test@test.com',
-            username: '_username',
+            // username: '_username',
             password: '1',
             provider: 'local'
         };

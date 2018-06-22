@@ -11,12 +11,12 @@ var passport = require('passport'),
 module.exports = function () {
     // Use local strategy
     passport.use(new LocalStrategy({
-            usernameField: 'username',
-            passwordField: 'password'
-        },
-        function (username, password, done) {
+        usernameField: 'email',
+        passwordField: 'password'
+    },
+        function (email, password, done) {
             User.findOne({
-                username: username.toLowerCase()
+                email: email.toLowerCase()
             }, function (err, user) {
 
                 if (err) {
@@ -24,7 +24,7 @@ module.exports = function () {
                 }
                 if (!user) {
                     return done(null, false, {
-                        message: 'User not found.'
+                        message: 'Email not found.'
                     });
                 }
                 bcrypt.compare(password, user.password, function (err, result) {

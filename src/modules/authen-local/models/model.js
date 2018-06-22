@@ -15,22 +15,22 @@ var validateLocalStrategyEmail = function (email) {
 
 
 var ModelSchema = new Schema({
-    firstName: {
-        type: String,
-        trim: true,
-        default: '',
-        required: 'Please fill in your first name'
-    },
-    lastName: {
-        type: String,
-        trim: true,
-        default: '',
-        required: 'Please fill in your last name'
-    },
-    displayName: {
-        type: String,
-        trim: true
-    },
+    // firstName: {
+    //     type: String,
+    //     trim: true,
+    //     default: '',
+    //     required: 'Please fill in your first name'
+    // },
+    // lastName: {
+    //     type: String,
+    //     trim: true,
+    //     default: '',
+    //     required: 'Please fill in your last name'
+    // },
+    // displayName: {
+    //     type: String,
+    //     trim: true
+    // },
     email: {
         type: String,
         unique: true,
@@ -39,38 +39,42 @@ var ModelSchema = new Schema({
         default: '',
         validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
     },
-    username: {
+    // username: {
+    //     type: String,
+    //     unique: 'Username already exists',
+    //     required: 'Please fill in a username',
+    //     lowercase: true,
+    //     trim: true
+    // },
+    serial: {
         type: String,
-        unique: 'Username already exists',
-        required: 'Please fill in a username',
-        lowercase: true,
         trim: true
     },
     password: {
         type: String,
         default: ''
     },
-    salt: {
-        type: String
-    },
-    profileImageURL: {
-        type: String,
-        default: 'http://res.cloudinary.com/hflvlav04/image/upload/v1487834187/g3hwyieb7dl7ugdgj3tb.png'
-    },
+    // salt: {
+    //     type: String
+    // },
+    // profileImageURL: {
+    //     type: String,
+    //     default: 'http://res.cloudinary.com/hflvlav04/image/upload/v1487834187/g3hwyieb7dl7ugdgj3tb.png'
+    // },
     provider: {
         type: String,
         required: 'Provider is required'
     },
-    providerData: {},
-    additionalProvidersData: {},
-    roles: {
-        type: [{
-            type: String,
-            enum: ['user', 'shop', 'admin']
-        }],
-        default: ['user'],
-        required: 'Please provide at least one role'
-    },
+    // providerData: {},
+    // additionalProvidersData: {},
+    // roles: {
+    //     type: [{
+    //         type: String,
+    //         enum: ['user', 'shop', 'admin']
+    //     }],
+    //     default: ['user'],
+    //     required: 'Please provide at least one role'
+    // },
     resetPasswordToken: {
         type: String
     },

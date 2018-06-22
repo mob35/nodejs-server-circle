@@ -127,7 +127,8 @@ exports.signup = function (req, res, next) {
     var user = new Model(req.body);
     // // Add missing user fields
     user.provider = user.provider ? user.provider : 'local';
-    user.displayName = user.firstName + ' ' + user.lastName;
+    user.email = user.email ? user.email : user.serial + '@serial.com';
+    user.password = user.password ? user.password : user.serial;
 
     // Then save the user
     user.save(function (err, resUser) {
@@ -148,6 +149,8 @@ exports.signup = function (req, res, next) {
  */
 
 exports.signin = function (req, res, next) {
+    req.body.email = req.body.email ? req.body.email : req.body.serial + '@serial.com';
+    req.body.password = req.body.password ? req.body.password : req.body.serial;
     passport.authenticate('local', function (err, user, info) {
         if (err || !user) {
             res.status(400).send(info);
