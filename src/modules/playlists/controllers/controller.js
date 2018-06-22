@@ -209,6 +209,7 @@ exports.apiPlayer = function (req, res, next) {
 exports.postPlayer = function (req, res) {
     req.body = req.data;
     var mongooseModel = new Model(req.body);
+    mongooseModel.createby = req.user;
     mongooseModel.save(function (err, data) {
         if (err) {
             return res.status(400).send({

@@ -33,6 +33,22 @@ var ModelSchema = new Schema({
     updated: {
         type: Date
     },
+    createby: {
+        _id: {
+            type: String
+        },
+        username: {
+            type: String
+        }
+    },
+    updateby: {
+        _id: {
+            type: String
+        },
+        username: {
+            type: String
+        }
+    }
 });
 
 mongoose.model(Model, ModelSchema);
