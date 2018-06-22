@@ -22,7 +22,7 @@ describe(_model + ' Authentication routes tests', function () {
             email: "test@email.com"
         };
         credentials3 = {
-            serial:'1111',
+            serial:'5b2cd04ea4b5ce00142c76f0sssssssssssssssssss',
         };
         done();
     });

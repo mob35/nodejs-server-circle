@@ -36,6 +36,7 @@ var ModelSchema = new Schema({
         unique: true,
         lowercase: true,
         trim: true,
+        required: 'Please fill in a email',
         default: '',
         validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
     },
@@ -133,20 +134,20 @@ ModelSchema.pre('save', function (next) {
 });
 
 /**
- * Find possible not used username
+ * Find possible not used Email
  */
-ModelSchema.statics.findUniqueUsername = function (username, suffix, callback) {
+ModelSchema.statics.findUniqueEmail = function (email, suffix, callback) {
     var _this = this;
-    var possibleUsername = username.toLowerCase() + (suffix || '');
+    var possibleEmail = email.toLowerCase() + (suffix || '');
 
     _this.findOne({
-        username: possibleUsername
+        email: possibleEmail
     }, function (err, user) {
         if (!err) {
             if (!user) {
-                callback(possibleUsername);
+                callback(possibleEmail);
             } else {
-                return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+                return _this.findUniqueUsername(email, (suffix || 0) + 1, callback);
             }
         } else {
             callback(null);

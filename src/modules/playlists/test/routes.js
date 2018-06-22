@@ -25,10 +25,8 @@ describe(_model + ' CRUD routes tests', function () {
             player: 'https://www.youtube.com/watch?v=A7XyqSc0VDE&index=18&list=RDMMrBXPvLzMqpU',
         };
         credentials = {
-            username: 'username',
+            serial: '1111',
             password: 'password',
-            firstName: 'first name',
-            lastName: 'last name',
             email: 'test@email.com'
         };
         done();
@@ -350,7 +348,7 @@ describe(_model + ' CRUD routes tests', function () {
     it('should be post Player', function (done) {
         request(app)
             .post('/api/player')
-            // .set('Authorization', 'Bearer ' + token)
+            .set('Authorization', 'Bearer ' + token)
             .send(item2)
             .expect(200)
             .end(function (err, res) {
@@ -362,7 +360,6 @@ describe(_model + ' CRUD routes tests', function () {
                 assert.equal(resp.data.player, item2.player);
                 done();
             });
-
     });
 
     afterEach(function (done) {

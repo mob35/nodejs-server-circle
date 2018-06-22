@@ -24,11 +24,11 @@ module.exports = function (app) {
         .put(controller.putPlayList)
         .delete(controller.delete);
 
-    app.route('/api/player')
+    app.route('/api/player').all(core.jwtCheck, policy.isAllowed)
         .get(controller.getPlayList)
         .post(controller.slicePlayer, controller.apiPlayer, controller.postPlayer);
 
-    app.route('/api/player/:playerId')
+    app.route('/api/player/:playerId').all(core.jwtCheck, policy.isAllowed)
         .get(controller.getPlayListById)
         .put(controller.putPlayList)
         .delete(controller.delete);
