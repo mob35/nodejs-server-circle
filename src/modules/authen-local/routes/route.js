@@ -17,7 +17,7 @@ module.exports = function (app) {
     //     .delete(controller.delete);
 
     app.route('/api/getuser')
-    // .all(core.jwtCheck, policy.isAllowed)
+    .all(core.jwtCheck, policy.isAllowed)
         .get(controller.getUser);
 
     app.route('/api/auth/signup').post(controller.signup, controller.token);
