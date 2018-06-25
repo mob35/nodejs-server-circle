@@ -22,10 +22,10 @@ var ModelSchema = new Schema({
     thumbnail: {
         type: String,
     },
-    rating: {
-        type: Number,
-        default: 0
-    },
+    // rating: {
+    //     type: Number,
+    //     default: 0
+    // },
     created: {
         type: Date,
         default: Date.now

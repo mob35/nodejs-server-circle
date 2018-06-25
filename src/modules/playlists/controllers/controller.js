@@ -41,7 +41,6 @@ exports.create = function (req, res) {
 };
 
 exports.getByID = function (req, res, next, id) {
-
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({
             status: 400,
@@ -105,21 +104,7 @@ exports.delete = function (req, res) {
 };
 
 
-exports.getPlayList = function (req, res) {
-    Model.find(function (err, datas) {
-        if (err) {
-            return res.status(400).send({
-                status: 400,
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp({
-                status: 200,
-                data: datas
-            });
-        };
-    }).lean();
-};
+
 
 exports.postPlayList = function (req, res) {
     var mongooseModel = new Model(req.body);
@@ -221,6 +206,61 @@ exports.postPlayer = function (req, res) {
                 status: 200,
                 data: data
             });
+        };
+    });
+};
+
+exports.getPlayList = function (req, res) {
+    Model.find(function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    }).lean();
+};
+
+exports.getPlayerByUser = function (req, res) {
+    Model.find({ 'createby._id': req.user }, function (err, datas) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp({
+                status: 200,
+                data: datas
+            });
+        };
+    }).lean();
+};
+
+exports.getByUserID = function (req, res, next, id) {
+    let userId = id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({
+            status: 400,
+            message: 'Id is invalid'
+        });
+    }
+
+    Model.findById(id, function (err, data) {
+        if (err) {
+            return res.status(400).send({
+                status: 400,
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            req.data = data ? data : {};
+            req.user = userId ? userId : '';
+            next();
         };
     });
 };

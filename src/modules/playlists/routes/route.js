@@ -33,6 +33,10 @@ module.exports = function (app) {
         .put(controller.putPlayList)
         .delete(controller.delete);
 
+    app.route('/api/playerbyuser/:userId').all(core.jwtCheck, policy.isAllowed)
+        .get(controller.getPlayerByUser);
+
     app.param(_model + 'id', controller.getByID);
     app.param('playerId', controller.getByID);
+    app.param('userId', controller.getByUserID);
 }

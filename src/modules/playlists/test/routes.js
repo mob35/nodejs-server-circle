@@ -16,19 +16,16 @@ describe(_model + ' CRUD routes tests', function () {
 
     before(function (done) {
         item = {
-            title: 'MACO「Sweet Memory」',
-            player: 'https://www.youtube.com/watch?v=A7XyqSc0VDE&index=18&list=RDMMrBXPvLzMqpU',
-            rating: 4,
-            artist: 'MACO'
+            player: 'https://www.youtube.com/watch?v=_paRxWTIyAo'
         };
         item2 = {
-            player: 'https://www.youtube.com/watch?v=A7XyqSc0VDE&index=18&list=RDMMrBXPvLzMqpU',
+            player: 'https://www.youtube.com/watch?v=_paRxWTIyAo'
         };
         credentials = {
-            username: '1111',
+            username: '1111@email.com',
             serial: '1111',
             password: 'password',
-            email: 'test@email.com'
+            email: '1111@email.com'
         };
         done();
     });
@@ -89,7 +86,6 @@ describe(_model + ' CRUD routes tests', function () {
                         }
                         var resp = res.body;
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.title, 'MACO「Sweet Memory」');
                         done();
                     });
             });
@@ -109,7 +105,6 @@ describe(_model + ' CRUD routes tests', function () {
                 }
                 var resp = res.body;
                 assert.equal(resp.status, 200);
-                assert.equal(resp.data.title, 'MACO「Sweet Memory」');
                 done();
             });
 
@@ -141,7 +136,6 @@ describe(_model + ' CRUD routes tests', function () {
                         }
                         var resp = res.body;
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.rating, 5);
                         done();
                     });
             });
@@ -232,6 +226,25 @@ describe(_model + ' CRUD routes tests', function () {
 
     });
 
+
+
+    it('should be post PlayList', function (done) {
+        request(app)
+            .post('/api/playlists')
+            .set('Authorization', 'Bearer ' + token)
+            .send(item)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
+                var resp = res.body;
+                assert.equal(resp.status, 200);
+                done();
+            });
+
+    });
+
     it('should be get PlayList', function (done) {
         request(app)
             .get('/api/playlists')
@@ -247,28 +260,10 @@ describe(_model + ' CRUD routes tests', function () {
             });
     });
 
-    it('should be post PlayList', function (done) {
-        request(app)
-            .post('/api/playlists')
-            // .set('Authorization', 'Bearer ' + token)
-            .send(item)
-            .expect(200)
-            .end(function (err, res) {
-                if (err) {
-                    return done(err);
-                }
-                var resp = res.body;
-                assert.equal(resp.status, 200);
-                assert.equal(resp.data.title, 'MACO「Sweet Memory」');
-                done();
-            });
-
-    });
-
     it('should be get PlayList by id', function (done) {
         request(app)
             .post('/api/playlists')
-            // .set('Authorization', 'Bearer ' + token)
+            .set('Authorization', 'Bearer ' + token)
             .send(item)
             .expect(200)
             .end(function (err, res) {
@@ -285,17 +280,43 @@ describe(_model + ' CRUD routes tests', function () {
                         }
                         var resp = res.body;
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.title, 'MACO「Sweet Memory」');
                         done();
                     });
             });
     });
 
+    // it('should be get PlayList by id with api/player', function (done) {
+    //     let id = '5b305eb63902da1970caa31b';
+    //     request(app)
+    //         .post('/api/player')
+    //         .set('Authorization', 'Bearer ' + token)
+    //         .send(item)
+    //         .expect(200)
+    //         .end(function (err, res) {
+    //             if (err) {
+    //                 return done(err);
+    //             }
+    //             var resp = res.body;
+    //             request(app)
+    //                 .get('/api/playerbyuser/' + id)
+    //                 .expect(200)
+    //                 .end(function (err, res) {
+    //                     if (err) {
+    //                         return done(err);
+    //                     }
+    //                     var resp = res.body;
+    //                     console.log(resp.data[0].createby);
+    //                     assert.equal(resp.status, 200);
+    //                     done();
+    //                 });
+    //         });
+    // });
+
     it('should be put PlayList', function (done) {
 
         request(app)
-            .post('/api/playlists')
-            // .set('Authorization', 'Bearer ' + token)
+            .post('/api/player')
+            .set('Authorization', 'Bearer ' + token)
             .send(item)
             .expect(200)
             .end(function (err, res) {
@@ -307,8 +328,8 @@ describe(_model + ' CRUD routes tests', function () {
                     rating: 5,
                 }
                 request(app)
-                    .put('/api/playlists/' + resp.data._id)
-                    // .set('Authorization', 'Bearer ' + token)
+                    .put('/api/player/' + resp.data._id)
+                    .set('Authorization', 'Bearer ' + token)
                     .send(update)
                     .expect(200)
                     .end(function (err, res) {
@@ -317,7 +338,6 @@ describe(_model + ' CRUD routes tests', function () {
                         }
                         var resp = res.body;
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.rating, 5);
                         done();
                     });
             });
