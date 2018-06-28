@@ -93,11 +93,10 @@ describe(_model + ' CRUD routes tests', function () {
 
     });
 
-    it('should be ' + _model + ' post use token', function (done) {
+    it('should be delete music', function (done) {
 
         request(app)
-            .post('/api/' + _model)
-            .set('Authorization', 'Bearer ' + token)
+            .post('/api/music')
             .send(item)
             .expect(200)
             .end(function (err, res) {
@@ -105,12 +104,13 @@ describe(_model + ' CRUD routes tests', function () {
                     return done(err);
                 }
                 var resp = res.body;
-                assert.equal(resp.status, 200);
-                done();
+                request(app)
+                    .delete('/api/music/' + resp.data._id)
+                    .expect(200)
+                    .end(done);
             });
 
     });
-
 
     afterEach(function (done) {
         User.remove().exec(function () {
