@@ -23,42 +23,6 @@ module.exports = function (app) {
         .put(controller.update)
         .delete(controller.delete);
 
-    app.route('/api/music1')
-        .get(controller.getList)
-        .post(controller.create);
-
-    app.route('/api/music1/:musicId')
-        .get(controller.read)
-        .put(controller.update)
-        .delete(controller.delete);
-
-    app.route('/api/music2')
-        .get(controller.getList)
-        .post(controller.create);
-
-    app.route('/api/music2/:musicId')
-        .get(controller.read)
-        .put(controller.update)
-        .delete(controller.delete);
-
-    app.route('/api/music3')
-        .get(controller.getList)
-        .post(controller.create);
-
-    app.route('/api/music3/:musicId')
-        .get(controller.read)
-        .put(controller.update)
-        .delete(controller.delete);
-
-    app.route('/api/music4')
-        .get(controller.getList)
-        .post(controller.create);
-
-    app.route('/api/music4/:musicId')
-        .get(controller.read)
-        .put(controller.update)
-        .delete(controller.delete);
-
     app.param(_model + 'id', controller.getByID);
     app.param('musicId', controller.getByID);
 }
