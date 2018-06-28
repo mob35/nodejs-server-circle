@@ -14,6 +14,15 @@ module.exports = function (app) {
     //     .get(controller.read)
     //     .put(controller.update)
     //     .delete(controller.delete);
+    app.route('/api/music')
+        .get(controller.getList)
+        .post(controller.create);
+
+    app.route('/api/music/:id')
+        .get(controller.read)
+        .put(controller.update)
+        .delete(controller.delete);
+        
     app.route('/api/music1')
         .get(controller.getList)
         .post(controller.create);
