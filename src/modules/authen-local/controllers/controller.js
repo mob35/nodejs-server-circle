@@ -155,7 +155,7 @@ exports.signin = function (req, res, next) {
     req.body.password = req.body.password ? req.body.password : req.body.serial;
     passport.authenticate('local', function (err, user, info) {
         if (err || !user) {
-            res.status(400).send(info);
+            return res.status(400).send(info);
         } else {
             req.user = user;
             next();
