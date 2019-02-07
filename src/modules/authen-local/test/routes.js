@@ -71,7 +71,7 @@ describe(_model + ' Authentication routes tests', function () {
             .send(credentials2)
             .expect(200)
             .end(function (err, res) {
-                console.log(res.body);
+                console.log('xixia',res.body);
 
                 if (err) {
                     return done(err);
