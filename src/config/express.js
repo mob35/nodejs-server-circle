@@ -39,7 +39,7 @@ app.use(session({
 }));
 
 app.get('/', function (req, res) {
-    res.jsonp({
+    return res.jsonp({
         status: 200,
         message: 'Server is running.'
     });

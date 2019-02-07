@@ -22,6 +22,7 @@ glob.sync(path.join(__dirname, '../src/modules/**/test/*.js')).forEach(function 
 describe('MongoDB disconnect', function () {
 
     it('disconnected..', function (done) {
+        this.timeout(5000);
         mongooseConfig.dropDatabase(function () {
             mongooseConfig.disconnect(done);
         });
